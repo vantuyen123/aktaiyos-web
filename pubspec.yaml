@@ -1,0 +1,40 @@
+name: aktaiyos_web_app
+description: "A new Flutter project."
+publish_to: 'none' 
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  google_fonts: ^6.2.1
+  dropdown_button2: ^2.3.9
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+
+flutter:
+
+  uses-material-design: true
+  assets:
+   - assets/dessert/
+   - assets/drinks/
+    # - assets/logo/
+    # - assets/hotpot/
+    # - assets/otsumami/
+    # - assets/rice/
+    # - assets/salad/
+    # - assets/sashimi/
+    # - assets/shusi/
+    # - assets/soup/
+    # - assets/wine/
+    # - assets/noodles/
+    # - assets/itame/
+    # - assets/okonomi_yaki/
+    # - assets/lunchMenu/
