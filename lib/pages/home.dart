@@ -1,6 +1,8 @@
+import 'package:aktaiyos_web_app/common/cloudinary.dart';
 import 'package:aktaiyos_web_app/common/image_list.dart';
 import 'package:aktaiyos_web_app/pages/widgets/header.dart';
 import 'package:aktaiyos_web_app/widgets/drawer.dart';
+import 'package:cloudinary_flutter/image/cld_image.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,6 +17,7 @@ class _HomePageState extends State<HomePage> {
   final List<GlobalKey> _keys = [];
   bool isTabletOrDesktop = false;
   List<String> listImage = listImagesDrink;
+  final cloudinary = CloudinaryService().cloudinary;
 
   @override
   void initState() {
@@ -50,21 +53,27 @@ class _HomePageState extends State<HomePage> {
       drawer: CustomDrawer(onItemTapped: (int value) {}),
       body: Stack(
         children: <Widget>[
-          SingleChildScrollView(
-            controller: _scrollController,
-            child: ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: listImage.length,
-              itemBuilder: (_, index) {
-                String item = listImage[index];
-                print('index ${index}, value: ${listImage[index]}');
-                return Container(
-                  color: Colors.blue,
-                  child: Image.asset(item, fit: BoxFit.fill, key: _keys[index]),
-                );
-              },
-            ),
+          // SingleChildScrollView(
+          //   controller: _scrollController,
+          //   child: ListView.builder(
+          //     shrinkWrap: true,
+          //     physics: const NeverScrollableScrollPhysics(),
+          //     itemCount: listImage.length,
+          //     itemBuilder: (_, index) {
+          //       String item = listImage[index];
+          //       print('index ${index}, value: ${listImage[index]}');
+          //       return Container(
+          //         color: Colors.blue,
+          //         child: Image.asset(item, fit: BoxFit.fill, key: _keys[index]),
+          //       );
+          //     },
+          //   ),
+          // ),
+          CldImageWidget(
+            cloudinary: cloudinary,
+            publicId: "1",
+            fit: BoxFit.scaleDown,
+            width: double.infinity,
           ),
           HeaderWidget(
             onClickLogo: () {},

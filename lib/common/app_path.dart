@@ -1,5 +1,5 @@
 class AppPath {
-  static const String logo = 'assets/logo.jpg';
+  static const String logo = 'assets/logo/logo.png';
   static const String a1 = 'assets/drinks/1.png';
   static const String a2 = 'assets/drinks/2.png';
   static const String a3 = 'assets/drinks/3.png';

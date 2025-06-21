@@ -1,3 +1,4 @@
+import 'package:aktaiyos_web_app/common/app_path.dart';
 import 'package:aktaiyos_web_app/widgets/dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -29,22 +30,10 @@ class HeaderWidget extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: onClickLogo,
-            child: Container(
+            child: const SizedBox(
               width: 50,
               height: 50,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.white,
-              ),
-              child: Text(
-                'Logo',
-                textAlign: TextAlign.center,
-                style: GoogleFonts.openSans(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              child: CircleAvatar(backgroundImage: AssetImage(AppPath.logo)),
             ),
           ),
           const SizedBox(width: 24),
