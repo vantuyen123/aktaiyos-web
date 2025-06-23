@@ -11,7 +11,6 @@ class CustomDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Column(
-        // padding: EdgeInsets.zero,
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -39,21 +38,14 @@ class CustomDrawer extends StatelessWidget {
           Expanded(
             child: ListView(
               children: [
-                _buildListTile(context, 'Drink', 0),
-                _buildListTile(context, 'Dessert', 6),
-                _buildListTile(context, 'Wine', 7),
-                _buildListTile(context, 'Sashimi', 14),
-                _buildListTile(context, 'SuShi', 22),
-                _buildListTile(context, 'Salad', 29),
-                _buildListTile(context, 'Otsumami', 31),
-                _buildListTile(context, 'Itame', 38),
-                _buildListTile(context, 'Okonomi Yaki', 41),
-                _buildListTile(context, 'Grill', 42),
-                _buildListTile(context, 'Fried Item', 49),
-                _buildListTile(context, 'Hotpot', 52),
-                _buildListTile(context, 'Rice', 54),
-                _buildListTile(context, 'Noodles', 59),
-                _buildListTile(context, 'Soup', 63),
+                _buildListTile(context, 'Đồ uống-Drink', 0),
+                _buildListTile(context, 'Salad & Soup', 9),
+                _buildListTile(context, 'Sashimi & Sushi', 14),
+                _buildListTile(context, 'Món khai vị & Món xào', 29),
+                _buildListTile(context, 'Bánh xào Nhật & Món nướng', 37),
+                _buildListTile(context, 'Món chiên', 45),
+                _buildListTile(context, 'Cơm & Mì', 48),
+                _buildListTile(context, 'Món Lẩu', 56),
                 _buildListTile(context, 'Set Lunch', 65),
               ],
             ),
@@ -86,8 +78,8 @@ class CustomDrawer extends StatelessWidget {
       ),
       // selected: selectedListImage == indexImg,
       onTap: () {
-        // onItemTapped(indexImg);
-        // Navigator.pop(context);
+        onItemTapped(indexImg);
+        Navigator.pop(context);
       },
     );
   }

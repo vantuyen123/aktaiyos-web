@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:aktaiyos_web_app/common/custom_size.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
@@ -10,29 +8,22 @@ class CustomDropdown extends StatelessWidget {
   final ValueChanged<int> onItemTapped;
 
   const CustomDropdown({
-    Key? key,
+    super.key,
     required this.selectedListImage,
     required this.onItemTapped,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> menuItems = [
-      {'value': 0, 'label': 'Drink'},
-      {'value': 6, 'label': 'Dessert'},
-      {'value': 7, 'label': 'Wine'},
-      {'value': 14, 'label': 'Sashimi'},
-      {'value': 22, 'label': 'SuShi'},
-      {'value': 29, 'label': 'Salad'},
-      {'value': 31, 'label': 'Otsumami'},
-      {'value': 38, 'label': 'Itame'},
-      {'value': 41, 'label': 'Okonomi Yaki'},
-      {'value': 42, 'label': 'Grill'},
-      {'value': 49, 'label': 'Fried Item'},
-      {'value': 52, 'label': 'Hotpot'},
-      {'value': 54, 'label': 'Rice'},
-      {'value': 59, 'label': 'Noodles'},
-      {'value': 63, 'label': 'Soup'},
+      {'value': 0, 'label': 'Đồ uống-Drink'},
+      {'value': 9, 'label': 'Salad & Soup'},
+      {'value': 14, 'label': 'Sashimi & Sushi'},
+      {'value': 29, 'label': 'Món khai vị & Món xào'},
+      {'value': 37, 'label': 'Bánh xào Nhật & Món nướng'},
+      {'value': 45, 'label': 'Món chiên'},
+      {'value': 48, 'label': 'Cơm & Mì'},
+      {'value': 56, 'label': 'Món Lẩu'},
       {'value': 65, 'label': 'Set Lunch'},
     ];
 

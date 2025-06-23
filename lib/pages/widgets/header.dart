@@ -1,7 +1,6 @@
 import 'package:aktaiyos_web_app/common/app_path.dart';
 import 'package:aktaiyos_web_app/widgets/dropdown.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HeaderWidget extends StatelessWidget {
   const HeaderWidget({
