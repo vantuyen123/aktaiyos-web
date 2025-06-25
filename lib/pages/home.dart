@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    imagesFuture = getAllImages();
+    imagesFuture = getAllImagesWeb();
     _scrollController = ScrollController();
   }
 
@@ -77,7 +77,6 @@ class _HomePageState extends State<HomePage> {
               _keys.addAll(
                 List.generate(allUrls.length, (index) => GlobalKey()),
               );
-              print('allUrls ${allUrls}');
               return Scrollbar(
                 controller: _scrollController,
                 thickness: 12.0,
@@ -97,25 +96,20 @@ class _HomePageState extends State<HomePage> {
                           shrinkWrap: true,
                           itemCount: allUrls.length,
                           itemBuilder: (context, index) {
-                            return CachedNetworkImage(
-                              imageUrl: allUrls[index],
-                              fit: BoxFit.cover,
+                            return Image.network(
                               key: _keys[index],
-                              cacheKey: allUrls[index],
-                              errorWidget: (context, url, error) =>
-                                  const Center(
-                                    child: SizedBox(
-                                      width: 50,
-                                      height: 50,
-                                      child: CircularProgressIndicator(),
-                                    ),
-                                  ),
+                              allUrls[index],
+                              filterQuality: FilterQuality.low,
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) {
+                                return const Icon(Icons.error);
+                              },
                             );
                           },
                         ),
                       ),
                       HeaderWidget(
-                        onClickLogo: () {},
+                        onClickLogo: () => _onItemTapped(0),
                         onSelectCategory: _onItemTapped,
                         isTabletOrDesktop: isTabletOrDesktop,
                         index: 0,

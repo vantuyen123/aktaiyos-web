@@ -5,7 +5,7 @@ double horizontalMargin(BuildContext context) {
   if (screenWidth >= 1200) {
     return 250.0; // Màn hình lớn (desktop)
   } else if (screenWidth >= 600) {
-    return 100.0; // Tablet
+    return 50.0; // Tablet
   } else {
     return 0; // Mobile
   }

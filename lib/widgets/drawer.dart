@@ -39,20 +39,20 @@ class CustomDrawer extends StatelessWidget {
             child: ListView(
               children: [
                 _buildListTile(context, 'Đồ uống-Drink', 0),
-                _buildListTile(context, 'Salad & Soup', 9),
-                _buildListTile(context, 'Sashimi & Sushi', 14),
+                _buildListTile(context, 'Sashimi & Sushi', 10),
+                _buildListTile(context, 'Salad & Soup', 26),
                 _buildListTile(context, 'Món khai vị & Món xào', 29),
-                _buildListTile(context, 'Bánh xào Nhật & Món nướng', 37),
+                _buildListTile(context, 'Bánh xèo Nhật & Món nướng', 37),
                 _buildListTile(context, 'Món chiên', 45),
                 _buildListTile(context, 'Cơm & Mì', 48),
                 _buildListTile(context, 'Món Lẩu', 56),
-                _buildListTile(context, 'Set Lunch', 65),
+                _buildListTile(context, 'Set Lunch', 58),
               ],
             ),
           ),
           const SizedBox(height: 24),
           Text(
-            '0931861588',
+            'Số điện thoại liên hệ',
             style: GoogleFonts.openSans(
               fontWeight: FontWeight.w400,
               color: Colors.red,

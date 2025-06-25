@@ -15,7 +15,12 @@ dependencies:
   firebase_core: ^2.27.0
   firebase_storage: ^11.6.9
   cached_network_image: ^3.4.0
-  shared_preferences: ^2.2.3
+  shared_preferences: ^2.5.3
+  fluttertoast: ^8.2.5
+  connectivity_plus: ^6.1.4
+  image: ^4.5.4
+  http: ^1.4.0
+  flutter_cache_manager: ^3.4.1
 
 dev_dependencies:
   flutter_test:
@@ -27,19 +32,5 @@ flutter:
 
   uses-material-design: true
   assets:
-   - assets/dessert/
-   - assets/drinks/
-   - assets/logo/
-    # - assets/logo/
-    # - assets/hotpot/
-    # - assets/otsumami/
-    # - assets/rice/
-    # - assets/salad/
-    # - assets/sashimi/
-    # - assets/shusi/
-    # - assets/soup/
-    # - assets/wine/
-    # - assets/noodles/
-    # - assets/itame/
-    # - assets/okonomi_yaki/
-    # - assets/lunchMenu/
+   - assets/
+  

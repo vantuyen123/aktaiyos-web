@@ -1,8 +1,9 @@
 final List<String> order = [
   'drinks',
-  'salad-soup',
   'sashimi-sushi',
-  'Appetizers-and-stir-fry',
+  'salad-soup',
+  'appetizers-and-stir-fry',
+  'pancake-grill',
   'fried-food',
   'com-mi',
   'hot-pot',

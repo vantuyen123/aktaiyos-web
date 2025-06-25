@@ -17,14 +17,14 @@ class CustomDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> menuItems = [
       {'value': 0, 'label': 'Đồ uống-Drink'},
-      {'value': 9, 'label': 'Salad & Soup'},
-      {'value': 14, 'label': 'Sashimi & Sushi'},
+      {'value': 10, 'label': 'Sashimi & Sushi'},
+      {'value': 26, 'label': 'Salad & Soup'},
       {'value': 29, 'label': 'Món khai vị & Món xào'},
       {'value': 37, 'label': 'Bánh xào Nhật & Món nướng'},
       {'value': 45, 'label': 'Món chiên'},
       {'value': 48, 'label': 'Cơm & Mì'},
       {'value': 56, 'label': 'Món Lẩu'},
-      {'value': 65, 'label': 'Set Lunch'},
+      {'value': 58, 'label': 'Set Lunch'},
     ];
 
     return DropdownButton2<int>(
