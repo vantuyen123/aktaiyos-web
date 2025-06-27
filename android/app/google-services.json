@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "37093652987",
+    "project_id": "aktaiyou-web",
+    "storage_bucket": "aktaiyou-web.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37093652987:android:5976e9ce09e94839ec335e",
+        "android_client_info": {
+          "package_name": "com.aktaiyo.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAA76vk_kgNKjGIPsYpgjB-0q-uyG1yOoc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
