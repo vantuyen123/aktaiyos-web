@@ -27,7 +27,17 @@ Future<void> setupFirebase() async {
       );
     } else {
       // Trên mobile thì chỉ cần gọi không có options
-      await Firebase.initializeApp();
+      await Firebase.initializeApp(
+        options: const FirebaseOptions(
+          apiKey: "AIzaSyCC6XlRzPNQCr8Qyf-q-7XrLSaMOtDj5cs",
+          authDomain: "aktaiyou-web.firebaseapp.com",
+          projectId: "aktaiyou-web",
+          storageBucket: "aktaiyou-web.firebasestorage.app",
+          messagingSenderId: "37093652987",
+          appId: "1:37093652987:web:d2bda3c021f0adbeec335e",
+          measurementId: "G-HX4RPTE64Q",
+        ),
+      );
       listAllImageFirebase = await getAllImages();
     }
   } catch (e) {
@@ -148,13 +158,15 @@ Future<void> downloadAndCacheImage(String imagePath) async {
   final http.Response response = await http.get(Uri.parse(imageUrl));
   if (response.statusCode == 200) {
     // Resize ảnh
-    final resizedImageBytes = await resizeImageBytes(response.bodyBytes);
+    // final resizedImageBytes = await resizeImageBytes(response.bodyBytes);
+    print('1111 $response');
 
     // Lưu ảnh đã resize vào cache
     final filePath = await cacheManager.putFile(
       imageUrl,
-      resizedImageBytes,
-      fileExtension: 'jpg', // Hoặc định dạng phù hợp
+      response.bodyBytes,
+      // format: 'image/png', // Nếu muốn lưu ảnh với đ��nh dạng khác như PNG, thay b��ng 'image/jpeg' hoặc 'image/gif'...etc.
+      // Hoặc định dạng phù hợp
     );
 
     print('Image cached at: $filePath');

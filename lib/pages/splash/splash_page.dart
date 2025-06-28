@@ -7,7 +7,6 @@ import 'package:aktaiyos_web_app/config/firebase_config.dart';
 import 'package:aktaiyos_web_app/helper/navigator_functions.dart';
 import 'package:aktaiyos_web_app/singletons/connection_status_singleton.dart';
 import 'package:aktaiyos_web_app/singletons/shared_preferences.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -22,43 +21,39 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      initData();
-    });
+    initData();
   }
 
   Future<void> initData() async {
-    if (kIsWeb) {
-      pushUntil(RouterConstants.home, context: context);
-    } else {
-      SystemChrome.setSystemUIOverlayStyle(
-        const SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent,
-          statusBarIconBrightness: Brightness.light,
-        ),
-      );
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light,
+      ),
+    );
 
-      await connectionStatus.initialize();
-      await sharedPreferences.init();
-      String? firstOpenApp = sharedPreferences.get(fistOpenApp);
-      if (firstOpenApp == null) {
-        showSuccess(
-          message: 'Hệ thống đang tải dữ liệu vui lòng đợi trong giây lát',
-        );
-        await setupFirebase();
-        if (listAllImageFirebase != null) {
-          for (String imgLink in listAllImageFirebase!) {
-            await downloadAndCacheImage(imgLink);
-          }
+    await connectionStatus.initialize();
+    await sharedPreferences.init();
+    String? firstOpenApp = sharedPreferences.get(fistOpenApp);
+    print('1111 $firstOpenApp ');
+    if (firstOpenApp == null) {
+      showSuccess(
+        message: 'Hệ thống đang tải dữ liệu vui lòng đợi trong giây lát',
+      );
+      await setupFirebase();
+      if (listAllImageFirebase != null) {
+        print('2222 $listAllImageFirebase ');
+        for (String imgLink in listAllImageFirebase!) {
+          await downloadAndCacheImage(imgLink);
         }
-        await sharedPreferences.save(fistOpenApp, '1');
-        await sharedPreferences.saveListString(listUrl, listAllImageFirebase);
-      } else {
-        listAllImageFirebase = sharedPreferences.getListString(listUrl);
-        Future.delayed(const Duration(seconds: 3));
       }
-      pushUntil(RouterConstants.home, context: context);
+      await sharedPreferences.save(fistOpenApp, '1');
+      await sharedPreferences.saveListString(listUrl, listAllImageFirebase);
+    } else {
+      listAllImageFirebase = sharedPreferences.getListString(listUrl);
+      Future.delayed(const Duration(seconds: 3));
     }
+    pushUntil(RouterConstants.home, context: context);
   }
 
   @override

@@ -6,6 +6,8 @@
 .DS_Store
 .atom/
 .build/
+.public/
+.firebase/
 .buildlog/
 .history
 .svn/
