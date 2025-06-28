@@ -2,16 +2,19 @@ import 'package:aktaiyos_web_app/common/fade_page_route_builder.dart';
 import 'package:aktaiyos_web_app/common/router_constants.dart';
 import 'package:aktaiyos_web_app/config/firebase_config.dart';
 import 'package:aktaiyos_web_app/config/router.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
-  await setupFirebase();
+  if (kIsWeb) {
+    WidgetsFlutterBinding.ensureInitialized();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+    await setupFirebase();
+  }
   runApp(const MyApp());
 }
 

@@ -14,7 +14,7 @@ class HomePageWeb extends StatefulWidget {
 }
 
 class _HomePageWebState extends State<HomePageWeb> {
-  late ScrollController _scrollController;
+  // late ScrollController _scrollController;
 
   final List<GlobalKey> _keys = [];
 
@@ -26,7 +26,7 @@ class _HomePageWebState extends State<HomePageWeb> {
   void initState() {
     super.initState();
     imagesFuture = getAllImagesWeb();
-    _scrollController = ScrollController();
+    // _scrollController = ScrollController();
   }
 
   void _onItemTapped(int index) {
@@ -57,7 +57,7 @@ class _HomePageWebState extends State<HomePageWeb> {
         backgroundColor: const Color(0xFF101010),
         drawer: CustomDrawer(onItemTapped: _onItemTapped),
         body: Scrollbar(
-          controller: _scrollController,
+          // controller: _scrollController,
           thickness: 12.0,
           radius: const Radius.circular(8.0),
           thumbVisibility: true,
@@ -99,7 +99,7 @@ class _HomePageWebState extends State<HomePageWeb> {
                         List.generate(allUrls.length, (index) => GlobalKey()),
                       );
                       return SingleChildScrollView(
-                        controller: _scrollController,
+                        // controller: _scrollController,
                         child: ListView.builder(
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
@@ -136,7 +136,6 @@ class _HomePageWebState extends State<HomePageWeb> {
 
   @override
   void dispose() {
-    _scrollController.dispose();
     super.dispose();
   }
 }

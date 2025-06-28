@@ -12,32 +12,18 @@ List<String>? listAllImageFirebase;
 
 Future<void> setupFirebase() async {
   try {
-    if (kIsWeb) {
-      // Chạy trên Web thì cần cấu hình FirebaseOptions
-      await Firebase.initializeApp(
-        options: const FirebaseOptions(
-          apiKey: "AIzaSyCC6XlRzPNQCr8Qyf-q-7XrLSaMOtDj5cs",
-          authDomain: "aktaiyou-web.firebaseapp.com",
-          projectId: "aktaiyou-web",
-          storageBucket: "aktaiyou-web.firebasestorage.app",
-          messagingSenderId: "37093652987",
-          appId: "1:37093652987:web:d2bda3c021f0adbeec335e",
-          measurementId: "G-HX4RPTE64Q",
-        ),
-      );
-    } else {
-      // Trên mobile thì chỉ cần gọi không có options
-      await Firebase.initializeApp(
-        options: const FirebaseOptions(
-          apiKey: "AIzaSyCC6XlRzPNQCr8Qyf-q-7XrLSaMOtDj5cs",
-          authDomain: "aktaiyou-web.firebaseapp.com",
-          projectId: "aktaiyou-web",
-          storageBucket: "aktaiyou-web.firebasestorage.app",
-          messagingSenderId: "37093652987",
-          appId: "1:37093652987:web:d2bda3c021f0adbeec335e",
-          measurementId: "G-HX4RPTE64Q",
-        ),
-      );
+    await Firebase.initializeApp(
+      options: const FirebaseOptions(
+        apiKey: "AIzaSyAqybnp8IpIR8BhIpqYE1kG8ElGSojHdaQ",
+        authDomain: "aktaiyo-sushi.firebaseapp.com",
+        projectId: "aktaiyo-sushi",
+        storageBucket: "aktaiyo-sushi.firebasestorage.app",
+        messagingSenderId: "633349712568",
+        appId: "1:633349712568:web:abf3de4f4288f07b6a624d",
+        measurementId: "G-ZQ3N3JB8L3",
+      ),
+    );
+    if (!kIsWeb) {
       listAllImageFirebase = await getAllImages();
     }
   } catch (e) {
@@ -157,17 +143,7 @@ Future<void> downloadAndCacheImage(String imagePath) async {
   // Tải ảnh gốc
   final http.Response response = await http.get(Uri.parse(imageUrl));
   if (response.statusCode == 200) {
-    // Resize ảnh
-    // final resizedImageBytes = await resizeImageBytes(response.bodyBytes);
-    print('1111 $response');
-
-    // Lưu ảnh đã resize vào cache
-    final filePath = await cacheManager.putFile(
-      imageUrl,
-      response.bodyBytes,
-      // format: 'image/png', // Nếu muốn lưu ảnh với đ��nh dạng khác như PNG, thay b��ng 'image/jpeg' hoặc 'image/gif'...etc.
-      // Hoặc định dạng phù hợp
-    );
+    final filePath = await cacheManager.putFile(imageUrl, response.bodyBytes);
 
     print('Image cached at: $filePath');
   } else {

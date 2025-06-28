@@ -35,14 +35,14 @@ class _SplashPageState extends State<SplashPage> {
     await connectionStatus.initialize();
     await sharedPreferences.init();
     String? firstOpenApp = sharedPreferences.get(fistOpenApp);
-    print('1111 $firstOpenApp ');
+    print(firstOpenApp);
     if (firstOpenApp == null) {
+      print(11111);
       showSuccess(
         message: 'Hệ thống đang tải dữ liệu vui lòng đợi trong giây lát',
       );
       await setupFirebase();
       if (listAllImageFirebase != null) {
-        print('2222 $listAllImageFirebase ');
         for (String imgLink in listAllImageFirebase!) {
           await downloadAndCacheImage(imgLink);
         }
@@ -53,6 +53,7 @@ class _SplashPageState extends State<SplashPage> {
       listAllImageFirebase = sharedPreferences.getListString(listUrl);
       Future.delayed(const Duration(seconds: 3));
     }
+
     pushUntil(RouterConstants.home, context: context);
   }
 

@@ -53,7 +53,6 @@ class _HomePageMobileState extends State<HomePageMobile> {
 
   @override
   Widget build(BuildContext context) {
-    print('1111 $cachedImages');
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xFF101010),
