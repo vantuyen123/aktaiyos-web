@@ -74,6 +74,7 @@ Future<List<String>> getAllImages() async {
   final Map<String, List<String>> imagesMap = {};
 
   for (final Reference ref in result.prefixes) {
+    if (ref.name == 'set-lunch') continue;
     final ListResult folderResult = await ref.listAll();
     final List<String> urls = [];
     for (final Reference fileRef in folderResult.items) {
