@@ -1,4 +1,5 @@
 import 'package:aktaiyos_web_app/common/custom_size.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -9,6 +10,20 @@ class CustomDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> menuItems = [
+      _buildListTile(context, 'Đồ uống-Drink', 0),
+      _buildListTile(context, 'Sashimi & Sushi', 11),
+      _buildListTile(context, 'Salad & Soup', 24),
+      _buildListTile(context, 'Món khai vị & Món xào', 26),
+      _buildListTile(context, 'Bánh xèo Nhật & Món nướng', 36),
+      _buildListTile(context, 'Món chiên', 44),
+      _buildListTile(context, 'Cơm & Mì', 48),
+      _buildListTile(context, 'Món Lẩu', 56),
+    ];
+
+    if (kIsWeb) {
+      menuItems.add(_buildListTile(context, 'Set Lunch', 58));
+    }
     return Drawer(
       child: Column(
         children: [
@@ -35,20 +50,7 @@ class CustomDrawer extends StatelessWidget {
             ],
           ),
           Container(color: Colors.grey, width: double.infinity, height: 1),
-          Expanded(
-            child: ListView(
-              children: [
-                _buildListTile(context, 'Đồ uống-Drink', 0),
-                _buildListTile(context, 'Sashimi & Sushi', 11),
-                _buildListTile(context, 'Salad & Soup', 24),
-                _buildListTile(context, 'Món khai vị & Món xào', 26),
-                _buildListTile(context, 'Bánh xèo Nhật & Món nướng', 36),
-                _buildListTile(context, 'Món chiên', 44),
-                _buildListTile(context, 'Cơm & Mì', 48),
-                _buildListTile(context, 'Món Lẩu', 56),
-              ],
-            ),
-          ),
+          Expanded(child: ListView(children: menuItems)),
           const SizedBox(height: 24),
         ],
       ),

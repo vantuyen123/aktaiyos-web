@@ -14,19 +14,17 @@ class HomePageWeb extends StatefulWidget {
 }
 
 class _HomePageWebState extends State<HomePageWeb> {
-  // late ScrollController _scrollController;
-
   final List<GlobalKey> _keys = [];
 
   bool isTabletOrDesktop = false;
+  final ScrollController _scrollController = ScrollController();
 
   late Future<Map<String, List<String>>> imagesFuture;
 
   @override
   void initState() {
     super.initState();
-    imagesFuture = getAllImagesWeb();
-    // _scrollController = ScrollController();
+    _keys.addAll(List.generate(imageUrlsWeb.length, (index) => GlobalKey()));
   }
 
   void _onItemTapped(int index) {
@@ -56,78 +54,37 @@ class _HomePageWebState extends State<HomePageWeb> {
       child: Scaffold(
         backgroundColor: const Color(0xFF101010),
         drawer: CustomDrawer(onItemTapped: _onItemTapped),
-        body: Scrollbar(
-          // controller: _scrollController,
-          thickness: 12.0,
-          radius: const Radius.circular(8.0),
-          thumbVisibility: true,
-          child: Container(
-            margin: EdgeInsets.symmetric(horizontal: horizontalMargin(context)),
-            decoration: const BoxDecoration(color: Color(0xFF272727)),
-            child: Stack(
-              children: [
-                FutureBuilder(
-                  future: imagesFuture,
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Container(
-                        width: double.infinity,
-                        height: double.infinity,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(AppPath.background),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        child: Center(child: CircularProgressIndicator()),
-                      );
-                    } else if (snapshot.hasError) {
-                      return Center(child: Text('Error: ${snapshot.error}'));
-                    } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                      return const Center(child: Text('No images found'));
-                    } else {
-                      final Map<String, List<String>> imagesMap =
-                          snapshot.data!;
-
-                      final List<String> allUrls = [];
-
-                      for (final folder in order) {
-                        final List<String> urls = imagesMap[folder] ?? [];
-                        allUrls.addAll(urls);
-                      }
-                      _keys.addAll(
-                        List.generate(allUrls.length, (index) => GlobalKey()),
-                      );
-                      return SingleChildScrollView(
-                        // controller: _scrollController,
-                        child: ListView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: allUrls.length,
-                          itemBuilder: (context, index) {
-                            return Image.network(
-                              key: _keys[index],
-                              allUrls[index],
-                              filterQuality: FilterQuality.low,
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) {
-                                return const Icon(Icons.error);
-                              },
-                            );
-                          },
-                        ),
-                      );
-                    }
+        body: Container(
+          margin: EdgeInsets.symmetric(horizontal: horizontalMargin(context)),
+          decoration: const BoxDecoration(color: Color(0xFF272727)),
+          child: Stack(
+            children: [
+              SingleChildScrollView(
+                controller: _scrollController,
+                child: ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: imageUrlsWeb.length,
+                  itemBuilder: (context, index) {
+                    return Image.network(
+                      key: _keys[index],
+                      imageUrlsWeb[index],
+                      filterQuality: FilterQuality.low,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return const Icon(Icons.error);
+                      },
+                    );
                   },
                 ),
-                HeaderWidget(
-                  onClickLogo: () => _onItemTapped(0),
-                  onSelectCategory: _onItemTapped,
-                  isTabletOrDesktop: isTabletOrDesktop,
-                  index: 0,
-                ),
-              ],
-            ),
+              ),
+              HeaderWidget(
+                onClickLogo: () => _onItemTapped(0),
+                onSelectCategory: _onItemTapped,
+                isTabletOrDesktop: isTabletOrDesktop,
+                index: 0,
+              ),
+            ],
           ),
         ),
       ),

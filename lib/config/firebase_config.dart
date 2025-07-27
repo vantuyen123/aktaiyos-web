@@ -12,19 +12,30 @@ List<String>? listAllImageFirebase;
 
 Future<void> setupFirebase() async {
   try {
-    await Firebase.initializeApp(
-      options: const FirebaseOptions(
-        apiKey: "AIzaSyAqybnp8IpIR8BhIpqYE1kG8ElGSojHdaQ",
-        authDomain: "aktaiyo-sushi.firebaseapp.com",
-        projectId: "aktaiyo-sushi",
-        storageBucket: "aktaiyo-sushi.firebasestorage.app",
-        messagingSenderId: "633349712568",
-        appId: "1:633349712568:web:abf3de4f4288f07b6a624d",
-        measurementId: "G-ZQ3N3JB8L3",
-      ),
-    );
     if (!kIsWeb) {
+      await Firebase.initializeApp(
+        options: const FirebaseOptions(
+          apiKey: "AIzaSyAqybnp8IpIR8BhIpqYE1kG8ElGSojHdaQ",
+          authDomain: "aktaiyo-sushi.firebaseapp.com",
+          projectId: "aktaiyo-sushi",
+          storageBucket: "aktaiyo-sushi.firebasestorage.app",
+          messagingSenderId: "633349712568",
+          appId: "1:633349712568:web:abf3de4f4288f07b6a624d",
+          measurementId: "G-ZQ3N3JB8L3",
+        ),
+      );
       listAllImageFirebase = await getAllImages();
+    } else {
+      await Firebase.initializeApp(
+        options: const FirebaseOptions(
+          apiKey: "AIzaSyDxLzhBrR-abmAaqKxgjxigkWlT4S7rviA",
+          authDomain: "akataiyo-web.firebaseapp.com",
+          projectId: "akataiyo-web",
+          storageBucket: "akataiyo-web.firebasestorage.app",
+          messagingSenderId: "973302100618",
+          appId: "1:973302100618:web:d40d99fe8ef86335c07373",
+        ),
+      );
     }
   } catch (e) {
     if (kDebugMode) {
@@ -39,11 +50,13 @@ Future<Map<String, List<String>>> getAllImagesWeb() async {
 
   for (final Reference ref in result.prefixes) {
     final ListResult folderResult = await ref.listAll();
-    final List<String> urls = [];
-    for (final Reference fileRef in folderResult.items) {
-      final String url = await fileRef.getDownloadURL();
-      urls.add(url);
-    }
+
+    // Tải URL song song thay vì tuần tự
+    final List<String> urls = await Future.wait(
+      folderResult.items.map((fileRef) => fileRef.getDownloadURL()),
+    );
+
+    // Sắp xếp theo số trong tên file (nếu có)
     urls.sort((a, b) {
       final numA =
           int.tryParse(
@@ -63,6 +76,7 @@ Future<Map<String, List<String>>> getAllImagesWeb() async {
           0;
       return numA.compareTo(numB);
     });
+
     imagesMap[ref.name] = urls;
   }
 

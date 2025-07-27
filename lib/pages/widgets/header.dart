@@ -39,25 +39,15 @@ class HeaderWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Visibility(
-                visible: isTabletOrDesktop,
-                child: CustomDropdown(
-                  selectedListImage: index,
-                  onItemTapped: onSelectCategory,
-                ),
-              ),
-              Visibility(
-                visible: !isTabletOrDesktop,
-                child: Builder(
-                  builder: (context) {
-                    return IconButton(
-                      icon: const Icon(Icons.menu, color: Color(0xFFe1b44b)),
-                      onPressed: () {
-                        Scaffold.of(context).openDrawer();
-                      },
-                    );
-                  },
-                ),
+              Builder(
+                builder: (context) {
+                  return IconButton(
+                    icon: const Icon(Icons.menu, color: Color(0xFFe1b44b)),
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
+                    },
+                  );
+                },
               ),
             ],
           ),
